@@ -1,4 +1,4 @@
-package com.wushanghui.chat03.model;
+package com.wushanghui.chat03;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -6,7 +6,6 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import lombok.ToString;
-import org.apache.ibatis.type.Alias;
 
 /**
  * @author 吴尚慧
@@ -18,7 +17,6 @@ import org.apache.ibatis.type.Alias;
 @AllArgsConstructor
 @Builder
 @ToString
-@Alias("user")
 public class UserModel {
     private Long id;
     private String name;
