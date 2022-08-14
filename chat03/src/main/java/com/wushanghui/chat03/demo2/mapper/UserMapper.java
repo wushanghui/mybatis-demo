@@ -1,7 +1,7 @@
-package com.wushanghui.chat03.mapper;
+package com.wushanghui.chat03.demo2.mapper;
 
 
-import com.wushanghui.chat03.model.UserModel;
+import com.wushanghui.chat03.demo1.model.UserModel;
 
 import java.util.List;
 

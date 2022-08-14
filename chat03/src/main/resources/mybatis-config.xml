@@ -6,14 +6,28 @@
 <!--    要按照这个顺序，不然会提示报错 The content of element type "configuration" must match "(properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?)".-->
 <!--    properties?,settings?,typeAliases?,typeHandlers?,objectFactory?,objectWrapperFactory?,reflectorFactory?,plugins?,environments?,databaseIdProvider?,mappers?-->
 
+    <!-- 方式1：property元素中定义属性-->
+<!--    <properties>-->
+<!--        <property name="jdbc.driver" value="com.mysql.jdbc.Driver"/>-->
+<!--        <property name="jdbc.url" value="jdbc:mysql://localhost:3306/mybatis_demo?characterEncoding=UTF-8"/>-->
+<!--        <property name="jdbc.username" value="root"/>-->
+<!--        <property name="jdbc.password" value="wushanghui"/>-->
+<!--    </properties>-->
+
+    <!-- 方式2：resource引入配置文件 -->
+    <properties resource="demo1/config.properties"/>
+
+<!--    方式3：url的方式引入远程配置文件-->
+<!--    <properties url="http://xxxxxx/properties/config.properties" />-->
+
     <typeAliases>
 <!--        <typeAlias type="com.wushanghui.chat03.model.UserModel" alias="user" />-->
 <!--        别名名称默认会采用类名小写的方式，如UserModel的别名为usermodel-->
         <package name="com.wushanghui.chat03"/>
     </typeAliases>
 
-    <!-- 环境配置，可以配置多个环境 -->
-    <environments default="dev">
+    <!-- 环境配置，可以配置多个环境 default标识启用哪一个环境-->
+    <environments default="sit">
         <!--
             environment用来对某个环境进行配置
             id：环境标识，唯一
@@ -29,10 +43,23 @@
                 <property name="password" value="wushanghui"/>
             </dataSource>
         </environment>
+        <environment id="sit">
+            <!-- 事务管理器工厂配置 -->
+            <transactionManager type="org.apache.ibatis.transaction.jdbc.JdbcTransactionFactory"/>
+            <!-- 数据源工厂配置，使用工厂来创建数据源 -->
+            <dataSource type="org.apache.ibatis.datasource.pooled.PooledDataSourceFactory">
+                <property name="driver" value="${jdbc.driver}"/>
+                <property name="url" value="${jdbc.url}"/>
+                <property name="username" value="${jdbc.username}"/>
+                <property name="password" value="${jdbc.password}"/>
+            </dataSource>
+        </environment>
     </environments>
 
     <mappers>
-        <mapper resource="mapper/UserMapper.xml"/>
+<!--        <mapper resource="mapper/UserMapper.xml"/>-->
+<!--     使用class的方式，要保证mapper和xml在同一个包下   org.apache.ibatis.binding.BindingException: Invalid bound statement (not found): com.wushanghui.chat03.mapper.UserMapper.getUserList-->
+        <mapper class="com.wushanghui.chat03.demo1.mapper.UserMapper"/>
     </mappers>
 
 </configuration>

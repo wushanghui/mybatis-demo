@@ -1,7 +1,7 @@
 package com.wushanghui.chat03;
 
-import com.wushanghui.chat03.mapper.UserMapper;
-import com.wushanghui.chat03.model.UserModel;
+import com.wushanghui.chat03.demo1.mapper.UserMapper;
+import com.wushanghui.chat03.demo1.model.UserModel;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.ibatis.io.Resources;
 import org.apache.ibatis.session.SqlSession;

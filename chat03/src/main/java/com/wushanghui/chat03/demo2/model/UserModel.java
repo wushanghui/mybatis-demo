@@ -1,4 +1,4 @@
-package com.wushanghui.chat03.model;
+package com.wushanghui.chat03.demo2.model;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
